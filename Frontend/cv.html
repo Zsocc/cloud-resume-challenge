@@ -163,7 +163,7 @@
                           <input id="ck3" type="checkbox" checked disabled/>
  
                <label for="ck3"></label>
-                            <input id="ck4" type="checkbox" disabled/>
+                            <input id="ck4" type="checkbox" checked disabled/>
              <label for="ck4"></label>
                            <input id="ck5" type="checkbox" disabled/>
                <label for="ck5"></label>
@@ -314,6 +314,18 @@
                   Football, video games, programming.
           </div>
        </div>
+       <br></br>
+       <div class="counter_text">
+        <h4>You are visitor:</h4>
+        <div id="counter">
+          <script>
+            fetch('https://ekq1gza932.execute-api.us-east-1.amazonaws.com/Test/getVisitorCount')
+            .then(res => res.json())
+            .then(res => {document.getElementById("counter").innerHTML = res.count})
+            .then(data => console.log(data));
+          </script>
+        </div>
+      </div>
      </div>
      </div>
   </div>
