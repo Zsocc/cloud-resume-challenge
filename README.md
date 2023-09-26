@@ -6,3 +6,6 @@ I created a pet project to enhance my expertise in DevOps, it is called the Clou
 - Registered a domain name with Amazon Route 53.
 - Used this solution to create a secure static website for my domain: <https://github.com/aws-samples/amazon-cloudfront-secure-static-site>
 - Deployed my Resume online, it can be reached at this address: <https://www.cloudresumezsocc.com>
+- Created a DynamoDB database to store the number of visitors
+- Wrote a Lambda function, which gets and updates the visitor count in the database
+- Set up an REST API Gateway, which triggers the Lambda function when gets a request
