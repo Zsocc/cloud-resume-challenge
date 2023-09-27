@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><
 <meta charset="UTF-8">
+<script src="cv.js"></script>
 
 <body>
 <link rel="stylesheet" href="cv.css" type="text/css"/>
@@ -318,12 +319,6 @@
        <div class="counter_text">
         <h4>You are visitor:</h4>
         <div id="counter">
-          <script>
-            fetch('https://ekq1gza932.execute-api.us-east-1.amazonaws.com/Test/getVisitorCount')
-            .then(res => res.json())
-            .then(res => {document.getElementById("counter").innerHTML = res.count})
-            .then(data => console.log(data));
-          </script>
         </div>
       </div>
      </div>
