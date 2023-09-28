@@ -14,3 +14,9 @@ Now that I had a working static website which can track and show how many visito
 
 - stored my credentials in Github secrets
 - set up a GitHub actions workflow, which copies the website to S3 and invalidates the CloudFront Distribution
+
+After I've done the Frontend, I created the Terraform files for the infrastructure.
+
+- Lambda function with python code inside
+- API Gateway
+- Dynamodb Table
