@@ -10,4 +10,7 @@ I created a pet project to enhance my expertise in DevOps, it is called the Clou
 - Wrote a Lambda function, which gets and updates the visitor count in the database
 - Set up an REST API Gateway, which triggers the Lambda function when gets a request
 
-Now that I had a working static website which can track and show how many visitors it had, I decided to write the underlying infrastructure in Terraform.
+Now that I had a working static website which can track and show how many visitors it had, I decided to write the underlying infrastructure in Terraform, but first i created a CI/CD pipeline for my Frontend.
+
+- stored my credentials in Github secrets
+- set up a GitHub actions workflow, which copies the website to S3 and invalidates the CloudFront Distribution
