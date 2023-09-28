@@ -1,0 +1,6 @@
+name: Copy website to S3 and invalidate CloudFront Distribution
+
+on:
+  push:
+    branches:
+    - main
