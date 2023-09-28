@@ -14,4 +14,9 @@ resource "aws_lambda_function" "lambda_func" {
   role          = "${aws_iam_role.lambda_role.arn}"
   handler       = "dbcall.lambda_handler"
   runtime = "python3.8"
+  environment {
+    variables = {
+      databaseName = "Counter"
+    }
+  }
 }
