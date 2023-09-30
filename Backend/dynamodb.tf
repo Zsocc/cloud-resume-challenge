@@ -1,5 +1,5 @@
-resource "aws_dynamodb_table" "Counter" {
-  name           = "Counter"
+resource "aws_dynamodb_table" "visitorCount" {
+  name           = "visitorCount"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
@@ -21,8 +21,8 @@ resource "aws_dynamodb_table" "Counter" {
 }
 
 resource "aws_dynamodb_table_item" "tableitem" {
-  table_name = aws_dynamodb_table.Counter.name
-  hash_key   = aws_dynamodb_table.Counter.hash_key
+  table_name = aws_dynamodb_table.visitorCount.name
+  hash_key   = aws_dynamodb_table.visitorCount.hash_key
 
   item = <<ITEM
 {

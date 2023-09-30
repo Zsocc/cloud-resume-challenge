@@ -16,7 +16,7 @@ resource "aws_lambda_function" "lambda_func" {
   runtime = "python3.8"
   environment {
     variables = {
-      databaseName = "Counter"
+      databaseName = "visitorCount"
     }
   }
 }

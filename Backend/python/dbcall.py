@@ -5,7 +5,7 @@ import os
 
 def lambda_handler(event, context):
     
-    TABLE_NAME = "Counter"
+    TABLE_NAME = "visitorCount"
     db_client = boto3.client('dynamodb')
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(TABLE_NAME)
