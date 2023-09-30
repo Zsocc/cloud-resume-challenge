@@ -20,3 +20,5 @@ After I've done the Frontend, I created the Terraform files for the infrastructu
 - Lambda function with python code inside
 - API Gateway
 - Dynamodb Table
+
+After creating the infrastructure in Terraform, i updated the workflow to run Terraform init, plan, and apply.
