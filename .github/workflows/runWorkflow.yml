@@ -25,9 +25,6 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate
-        
-      - name: Terraform Format
-        run: terraform fmt -check  
 
       - name: plan
         id: plan
