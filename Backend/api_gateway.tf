@@ -10,6 +10,7 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 resource "aws_apigatewayv2_api" "lambda" {
  	name          = "visitor_count_api"
 	protocol_type = "HTTP"
+  target        = aws_lambda_function.lambda_func.arn
 	description   = "Visitor count for Cloud Resume Challenge"
 	cors_configuration {
 		allow_origins = ["*"]
@@ -57,11 +58,11 @@ resource "aws_apigatewayv2_integration" "integration" {
 
 # API Gateway Route
 
-resource "aws_apigatewayv2_route" "terraform_lambda_func" {
-  api_id    = aws_apigatewayv2_api.lambda.id
-  route_key = "ANY /terraform_lambda_func"
-  target    = "integrations/${aws_apigatewayv2_integration.integration.id}"
-}
+#resource "aws_apigatewayv2_route" "terraform_lambda_func" {
+ # api_id    = aws_apigatewayv2_api.lambda.id
+  #route_key = "ANY /terraform_lambda_func"
+  #target    = "integrations/${aws_apigatewayv2_integration.integration.id}"
+#}
 
 # Permission
 
