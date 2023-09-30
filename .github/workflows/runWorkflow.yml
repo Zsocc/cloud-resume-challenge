@@ -1,0 +1,69 @@
+---
+name: Deploy Terraform Infrastructure, copy website to S3 and invalidate CloudFront Distribution
+'on':
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-plan-and-apply:
+    name: Terraform Infra
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      SOURCE_DIR: Backend
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v2
+
+      - name: Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        
+      - name: Terraform Format
+        run: terraform fmt -check  
+
+      - name: plan
+        id: plan
+        run: terraform plan  
+
+      - name: terraform apply
+        id: apply
+        run: terraform apply -auto-approve  
+
+  copy-website-to-s3:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: sync s3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: '--follow-symlinks --delete --exclude ''.git/*'''
+        env:
+          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+          SOURCE_DIR: Frontend
+
+  invalidate-cloudfront-distribution:
+    needs: copy-website-to-s3
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: /*
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
