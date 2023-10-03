@@ -1,6 +1,6 @@
 resource "aws_dynamodb_table" "visitorCount" {
   name           = "visitorCount"
-  billing_mode   = "PROVISIONED"
+  billing_mode   = "PAY_PER_REQUEST"
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "id"

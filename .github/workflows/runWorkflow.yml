@@ -21,6 +21,11 @@ jobs:
       - name: Checkout Repository Code
         uses: actions/checkout@v2
 
+      - name: Setup Terraform CLI  
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+
       - name: Init
         id: init
         run: terraform init
